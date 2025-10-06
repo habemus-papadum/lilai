@@ -1,0 +1,20 @@
+[project]
+name = "lilai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Nehal Patel", email = "nehal@alum.mit.edu" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "anywidget>=0.9.18",
+    "interactive-json-tree>=0.2.0",
+    "jupyter>=1.1.1",
+    "marimo>=0.16.5",
+    "openai>=2.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
