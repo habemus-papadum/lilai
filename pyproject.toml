@@ -9,11 +9,17 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "anywidget>=0.9.18",
+    "calflops>=0.3.2",
     "interactive-json-tree>=0.2.0",
     "jupyter>=1.1.1",
     "marimo>=0.16.5",
+    "numpy>=2.4.0",
     "openai>=2.1.0",
     "openai-agents>=0.6.1",
+    "pytest>=9.0.2",
+    "torch>=2.9.1",
+    "torchvision>=0.24.1",
+    "transformers>=4.57.3",
     "wandb>=0.23.0",
     "weave>=0.52.17",
 ]
@@ -21,3 +27,9 @@ dependencies = [
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["exploration", "src"]
+python_files = ["test_*.py", "*_test.py"]
+python_functions = ["test_*"]
+addopts = "-v"
