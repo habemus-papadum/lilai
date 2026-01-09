@@ -249,8 +249,16 @@ def test_residual_addition_happens():
     print("TEST: Residual Addition Verification")
     print("=" * 60)
 
-    # TODO(human): Implement the test here
-    pass
+    block = BasicBlock(in_channels=64, planes=64, stride=1)
+    with torch.no_grad():
+        block.conv1.weight.zero_()
+        block.conv2.weight.zero_()
+
+    x = torch.ones(1, 64, 8, 8) * 0.5
+    output = block(x)
+    expected = torch.relu(x)
+    assert torch.allclose(output, expected, atol=1e-5), "Residual addition test failed"
+    print("✅ Residual addition verified: output matches relu(input) when conv weights are zeroed")
 
 
 def test_batchnorm_train_vs_eval():
@@ -264,6 +272,7 @@ def test_batchnorm_train_vs_eval():
 
     Steps:
     1. Create a BasicBlock
+    
     2. Create an input tensor x = torch.randn(4, 64, 8, 8)  # batch_size=4
     3. Run forward in train mode: block.train(); out_train = block(x)
     4. Run forward in eval mode: block.eval(); out_eval = block(x)
@@ -280,10 +289,12 @@ def test_batchnorm_train_vs_eval():
     print("=" * 60)
     print("TEST: BatchNorm Train vs Eval Mode")
     print("=" * 60)
-
-    # TODO(human): Implement the test here
-    pass
-
+    block = BasicBlock(in_channels=64, planes=64, stride=1)
+    x = torch.randn(4, 64, 8, 8)
+    block.train(); out_train = block(x)
+    block.eval(); out_eval = block(x)
+    assert not torch.allclose(out_train, out_eval), "BatchNorm train vs eval outputs should differ"
+    
 
 if __name__ == "__main__":
     print("\n🧪 Running BasicBlock Tests\n")

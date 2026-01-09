@@ -1,7 +1,6 @@
 {
-    "python.testing.pytestEnabled": true,
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestArgs": [
-        "-s"
-    ]
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": ["-s"],
+  "notebook.navigation.allowNavigateToSurroundingCells": true
 }
